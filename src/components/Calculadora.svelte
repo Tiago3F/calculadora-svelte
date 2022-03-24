@@ -1,6 +1,4 @@
 <script lang="ts">
-    import { object_without_properties } from "svelte/internal";
-
     import Botao from "./Botao.svelte";
     import Linha from "./Linha.svelte";
     import CalculadoraModel from "./models/CalculadoraModel";
@@ -8,6 +6,8 @@
 
     let calc = new CalculadoraModel();
     const numeroDigitado = (num: string) => (calc = calc.numeroDigitado(num));
+    const operacaoDigitada = (op: string) => (calc = calc.operacaoDigitada(op));
+    const calcular = () => (calc = calc.calcular());
     const pontoDigitado = () => (calc = calc.pontoDigitado());
     const limparTela = () => (calc = calc.limparTela());
 </script>
@@ -16,34 +16,34 @@
     <Tela valor={calc.valor} />
     <Linha>
         <Botao destaque triplo texto="AC" onClick={limparTela} />
-        <Botao operacao texto="/" />
+        <Botao operacao texto="/" onClick={operacaoDigitada} />
     </Linha>
 
     <Linha>
         <Botao texto="7" onClick={numeroDigitado} />
         <Botao texto="8" onClick={numeroDigitado} />
         <Botao texto="9" onClick={numeroDigitado} />
-        <Botao operacao texto="*" />
+        <Botao operacao texto="*" onClick={operacaoDigitada} />
     </Linha>
 
     <Linha>
         <Botao texto="4" onClick={numeroDigitado} />
         <Botao texto="5" onClick={numeroDigitado} />
         <Botao texto="6" onClick={numeroDigitado} />
-        <Botao operacao texto="+" />
+        <Botao operacao texto="+" onClick={operacaoDigitada} />
     </Linha>
 
     <Linha>
         <Botao texto="1" onClick={numeroDigitado} />
         <Botao texto="2" onClick={numeroDigitado} />
         <Botao texto="3" onClick={numeroDigitado} />
-        <Botao operacao texto="-" />
+        <Botao operacao texto="-" onClick={operacaoDigitada} />
     </Linha>
 
     <Linha>
         <Botao duplo texto="0" onClick={numeroDigitado} />
         <Botao texto="," onClick={pontoDigitado} />
-        <Botao destaque texto="=" />
+        <Botao destaque texto="=" onClick={calcular} />
     </Linha>
 </div>
 
