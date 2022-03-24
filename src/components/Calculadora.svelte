@@ -45,7 +45,10 @@
         <Botao texto="," onClick={pontoDigitado} />
         <Botao destaque texto="=" onClick={calcular} />
     </Linha>
+
 </div>
+
+<div class="autor">2021 - Tiago Moreira</div>
 
 <style>
     .calculadora {
@@ -56,5 +59,11 @@
         border-radius: 10px;
         display: flex;
         flex-direction: column;
+    }
+
+    .autor {
+        color: aliceblue;
+        margin-left: 100px;
+       
     }
 </style>
