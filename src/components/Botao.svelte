@@ -1,16 +1,21 @@
 <script lang="ts">
+import { text } from "svelte/internal";
     export let texto: string;
     export let duplo: boolean = false;
     export let triplo: boolean = false;
     export let operacao: boolean = false;
     export let destaque: boolean = false;
-
-    function click() {
-        console.log('Click...')
-    }
+    export let onClick: (valor: string) => void = () => {};
 </script>
 
-<button class="botao" on:click={click} class:triplo class:duplo class:operacao class:destaque>
+<button
+    class="botao"
+    on:click={() => onClick(texto)}
+    class:triplo
+    class:duplo
+    class:operacao
+    class:destaque
+>
     {texto}
 </button>
 

@@ -1,40 +1,48 @@
 <script lang="ts">
+    import { object_without_properties } from "svelte/internal";
+
     import Botao from "./Botao.svelte";
     import Linha from "./Linha.svelte";
+    import CalculadoraModel from "./models/CalculadoraModel";
     import Tela from "./Tela.svelte";
+
+    let calc = new CalculadoraModel();
+    const numeroDigitado = (num: string) => (calc = calc.numeroDigitado(num));
+    const pontoDigitado = () => (calc = calc.pontoDigitado());
+    const limparTela = () => (calc = calc.limparTela());
 </script>
 
 <div class="calculadora">
-    <Tela valor="012345678901" />
+    <Tela valor={calc.valor} />
     <Linha>
-        <Botao destaque triplo texto="AC" />
+        <Botao destaque triplo texto="AC" onClick={limparTela} />
         <Botao operacao texto="/" />
     </Linha>
 
     <Linha>
-        <Botao texto="7" />
-        <Botao texto="8" />
-        <Botao texto="9" />
+        <Botao texto="7" onClick={numeroDigitado} />
+        <Botao texto="8" onClick={numeroDigitado} />
+        <Botao texto="9" onClick={numeroDigitado} />
         <Botao operacao texto="*" />
     </Linha>
 
     <Linha>
-        <Botao texto="4" />
-        <Botao texto="5" />
-        <Botao texto="6" />
+        <Botao texto="4" onClick={numeroDigitado} />
+        <Botao texto="5" onClick={numeroDigitado} />
+        <Botao texto="6" onClick={numeroDigitado} />
         <Botao operacao texto="+" />
     </Linha>
 
     <Linha>
-        <Botao texto="1" />
-        <Botao texto="2" />
-        <Botao texto="3" />
+        <Botao texto="1" onClick={numeroDigitado} />
+        <Botao texto="2" onClick={numeroDigitado} />
+        <Botao texto="3" onClick={numeroDigitado} />
         <Botao operacao texto="-" />
     </Linha>
 
     <Linha>
-        <Botao duplo texto="0" />
-        <Botao texto="," />
+        <Botao duplo texto="0" onClick={numeroDigitado} />
+        <Botao texto="," onClick={pontoDigitado} />
         <Botao destaque texto="=" />
     </Linha>
 </div>
@@ -49,6 +57,4 @@
         display: flex;
         flex-direction: column;
     }
-
-    
 </style>
